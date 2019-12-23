@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Погода</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#">Features</a>
+        <a class="p-2 text-dark" href="#">Enterprise</a>
+        <a class="p-2 text-dark" href="#">Support</a>
+        <a class="p-2 text-dark" href="#">Pricing</a>
+    </nav>
+    <a class="btn btn-outline-primary" href="#">Sign up</a>
+  </div>
+  <h1>Погодное приложение</h1>
+  <div class="container mt-">
+      <div class="row">
+          <div class="col-5 offset-2">
+              <h1>Погода в городе</h1>
+
+              <form action="" method="post">
+                  {% csrf_token %}
+                  <label for="city">Город</label>
+                  {{ form.name }}
+{#                  <input type="text" id ="city" class="form-control" name="city" placeholder="Введите город">#}
+                  <input type="submit" name="send" value="Узнать" class="btn btn-danger">
+              </form>
+
+          </div>
+          <div class="col-5 offset-2">
+              <h1>Информация</h1>
+
+              {% for info in all_info %}
+
+              <div class="alert alert-info">
+                  <div class="row">
+                      <div class="col-9">
+                        <b>Погода в </b> {{info.city}}<br>
+                        <b>Температура: </b> {{info.temp}} <span>&#8451;</span><br>
+                      </div>
+                      <div class="col-2 offset-1">
+                        <img src="https://openweathermap.org/img/wn/{{info.icon}}.png" alt="иконка" class="img-thumbnail">
+                      </div>
+                    </div>
+              </div>
+              {% endfor %}
+            </div>
+      </div>
+  </div>
+
+
+</body>
+</html>
